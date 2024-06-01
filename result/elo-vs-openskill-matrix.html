@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Crok Season 2 Results - Rating System Matrix</title>
+  </head>
+  <body>
+    <div>
+      <button id="hideAll">Hide all!</button>
+      <button id="showAll">Show all!</button>
+      <canvas id="rating"></canvas>
+      <hr />
+      <canvas id="ranking"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const ratingData = [
+        {
+          label: "Jens Krog Lodberg",
+          data: [
+            {
+              r: 6,
+              x: 1025,
+              y: 1769,
+            },
+          ],
+        },
+        {
+          label: "Christina Damsgaard Lind",
+          data: [
+            {
+              r: 6,
+              x: 1063,
+              y: 1768,
+            },
+          ],
+        },
+        {
+          label: "Søren Sommer",
+          data: [
+            {
+              r: 6,
+              x: 1132,
+              y: 1763,
+            },
+          ],
+        },
+        {
+          label: "Christoffer Nørbjerg",
+          data: [
+            {
+              r: 6,
+              x: 892,
+              y: 1697,
+            },
+          ],
+        },
+        {
+          label: "Simon Bøgelund Jensen",
+          data: [
+            {
+              r: 6,
+              x: 735,
+              y: 1671,
+            },
+          ],
+        },
+        {
+          label: "Anders Henneberg",
+          data: [
+            {
+              r: 6,
+              x: 898,
+              y: 1648,
+            },
+          ],
+        },
+        {
+          label: "Christian Brandstrup Bondesen",
+          data: [
+            {
+              r: 6,
+              x: 777,
+              y: 1639,
+            },
+          ],
+        },
+        {
+          label: "Esmaralda Dorthea Bjerrum",
+          data: [
+            {
+              r: 6,
+              x: 852,
+              y: 1629,
+            },
+          ],
+        },
+        {
+          label: "Kenneth Munk Christiansen",
+          data: [
+            {
+              r: 6,
+              x: 782,
+              y: 1628,
+            },
+          ],
+        },
+        {
+          label: "Mads Bork Nees",
+          data: [
+            {
+              r: 6,
+              x: 573,
+              y: 1591,
+            },
+          ],
+        },
+        {
+          label: "Markus Kristian Simonsen",
+          data: [
+            {
+              r: 6,
+              x: 662,
+              y: 1587,
+            },
+          ],
+        },
+        {
+          label: "Nikolaj Kristensen",
+          data: [
+            {
+              r: 6,
+              x: 740,
+              y: 1578,
+            },
+          ],
+        },
+        {
+          label: "Rune Terp",
+          data: [
+            {
+              r: 6,
+              x: 607,
+              y: 1577,
+            },
+          ],
+        },
+        {
+          label: "Victor Steiner Kristensen",
+          data: [
+            {
+              r: 6,
+              x: 394,
+              y: 1571,
+            },
+          ],
+        },
+        {
+          label: "Martin Stokholm Lauridsen",
+          data: [
+            {
+              r: 6,
+              x: 578,
+              y: 1563,
+            },
+          ],
+        },
+        {
+          label: "Mike Dahl Lillelund Røjkjær",
+          data: [
+            {
+              r: 6,
+              x: 557,
+              y: 1562,
+            },
+          ],
+        },
+        {
+          label: "Peter Ring Pedersen",
+          data: [
+            {
+              r: 6,
+              x: 361,
+              y: 1559,
+            },
+          ],
+        },
+        {
+          label: "Michael Fack Sørensen",
+          data: [
+            {
+              r: 6,
+              x: 239,
+              y: 1549,
+            },
+          ],
+        },
+        {
+          label: "Morten Hau Lyng",
+          data: [
+            {
+              r: 6,
+              x: 225,
+              y: 1545,
+            },
+          ],
+        },
+        {
+          label: "Franz Bernhard",
+          data: [
+            {
+              r: 6,
+              x: 685,
+              y: 1503,
+            },
+          ],
+        },
+        {
+          label: "Lars Emil Gram Christensen",
+          data: [
+            {
+              r: 6,
+              x: 25,
+              y: 1496,
+            },
+          ],
+        },
+        {
+          label: "Oscarboe Vesthy Damgaard Nielsen",
+          data: [
+            {
+              r: 6,
+              x: 14,
+              y: 1487,
+            },
+          ],
+        },
+        {
+          label: "Thomas Møller",
+          data: [
+            {
+              r: 6,
+              x: 140,
+              y: 1482,
+            },
+          ],
+        },
+        {
+          label: "Jonas Harder Poulsen",
+          data: [
+            {
+              r: 6,
+              x: -46,
+              y: 1482,
+            },
+          ],
+        },
+        {
+          label: "Ehab Basha",
+          data: [
+            {
+              r: 6,
+              x: -69,
+              y: 1481,
+            },
+          ],
+        },
+        {
+          label: "Kristian Thorsen",
+          data: [
+            {
+              r: 6,
+              x: -65,
+              y: 1481,
+            },
+          ],
+        },
+        {
+          label: "Rolf Malthe Andersen",
+          data: [
+            {
+              r: 6,
+              x: 36,
+              y: 1475,
+            },
+          ],
+        },
+        {
+          label: "Niclas Spas Sørensen",
+          data: [
+            {
+              r: 6,
+              x: -89,
+              y: 1473,
+            },
+          ],
+        },
+        {
+          label: "Kristoffer Sloth Dybdal",
+          data: [
+            {
+              r: 6,
+              x: -126,
+              y: 1463,
+            },
+          ],
+        },
+        {
+          label: "Zabih Yasreb Mansoor",
+          data: [
+            {
+              r: 6,
+              x: -141,
+              y: 1460,
+            },
+          ],
+        },
+        {
+          label: "Mathias Aslak Jensen",
+          data: [
+            {
+              r: 6,
+              x: -216,
+              y: 1458,
+            },
+          ],
+        },
+        {
+          label: "Mathias Nortvig Thomassen",
+          data: [
+            {
+              r: 6,
+              x: -231,
+              y: 1457,
+            },
+          ],
+        },
+        {
+          label: "Alberte Frederiksen",
+          data: [
+            {
+              r: 6,
+              x: -218,
+              y: 1457,
+            },
+          ],
+        },
+        {
+          label: "Mikkel Høj Hansen",
+          data: [
+            {
+              r: 6,
+              x: -228,
+              y: 1446,
+            },
+          ],
+        },
+        {
+          label: "Rasmus Lund Lorenzen",
+          data: [
+            {
+              r: 6,
+              x: 240,
+              y: 1442,
+            },
+          ],
+        },
+        {
+          label: "Philip Sams",
+          data: [
+            {
+              r: 6,
+              x: 165,
+              y: 1441,
+            },
+          ],
+        },
+        {
+          label: "Morten Bech",
+          data: [
+            {
+              r: 6,
+              x: -192,
+              y: 1440,
+            },
+          ],
+        },
+        {
+          label: "Mikkel Kaysen",
+          data: [
+            {
+              r: 6,
+              x: 474,
+              y: 1427,
+            },
+          ],
+        },
+        {
+          label: "Henrik Rivera Hansen",
+          data: [
+            {
+              r: 6,
+              x: -304,
+              y: 1410,
+            },
+          ],
+        },
+        {
+          label: "Gitte Teglgaard Bavnsgaard",
+          data: [
+            {
+              r: 6,
+              x: -372,
+              y: 1408,
+            },
+          ],
+        },
+        {
+          label: "Martin Nørlem",
+          data: [
+            {
+              r: 6,
+              x: -425,
+              y: 1405,
+            },
+          ],
+        },
+        {
+          label: "Eskild Diderichsen",
+          data: [
+            {
+              r: 6,
+              x: -27,
+              y: 1401,
+            },
+          ],
+        },
+        {
+          label: "Jonas Nielsen",
+          data: [
+            {
+              r: 6,
+              x: 381,
+              y: 1389,
+            },
+          ],
+        },
+        {
+          label: "Nina Thomsen",
+          data: [
+            {
+              r: 6,
+              x: -171,
+              y: 1375,
+            },
+          ],
+        },
+        {
+          label: "Alexander Reuss Christensen",
+          data: [
+            {
+              r: 6,
+              x: 309,
+              y: 1334,
+            },
+          ],
+        },
+        {
+          label: "Simon Bundgaard-Egeberg",
+          data: [
+            {
+              r: 6,
+              x: 211,
+              y: 1333,
+            },
+          ],
+        },
+        {
+          label: "Oliver Hennings",
+          data: [
+            {
+              r: 6,
+              x: 184,
+              y: 1321,
+            },
+          ],
+        },
+        {
+          label: "Lasse Nielsen Fisker",
+          data: [
+            {
+              r: 6,
+              x: -693,
+              y: 1254,
+            },
+          ],
+        },
+      ];
+      const ratingElement = document.getElementById("rating");
+      const ratingConfig = {
+        type: "bubble",
+        data: { datasets: ratingData },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: "bottom",
+            },
+            title: {
+              display: true,
+              text: "Ratings",
+            },
+          },
+          scales: {
+            y: {
+              title: {
+                display: true,
+                text: "ELO",
+              },
+            },
+            x: {
+              title: {
+                display: true,
+                text: "Openskill",
+              },
+            },
+          },
+        },
+      };
+
+      const ratingChartInstance = new Chart(ratingElement, ratingConfig);
+
+      //------------------------
+
+      const rankingData = [
+        {
+          label: "Jens Krog Lodberg",
+          data: [
+            {
+              r: 6,
+              x: 3,
+              y: 1,
+            },
+          ],
+        },
+        {
+          label: "Christina Damsgaard Lind",
+          data: [
+            {
+              r: 6,
+              x: 2,
+              y: 2,
+            },
+          ],
+        },
+        {
+          label: "Søren Sommer",
+          data: [
+            {
+              r: 6,
+              x: 1,
+              y: 3,
+            },
+          ],
+        },
+        {
+          label: "Christoffer Nørbjerg",
+          data: [
+            {
+              r: 6,
+              x: 5,
+              y: 4,
+            },
+          ],
+        },
+        {
+          label: "Simon Bøgelund Jensen",
+          data: [
+            {
+              r: 6,
+              x: 10,
+              y: 5,
+            },
+          ],
+        },
+        {
+          label: "Anders Henneberg",
+          data: [
+            {
+              r: 6,
+              x: 4,
+              y: 6,
+            },
+          ],
+        },
+        {
+          label: "Christian Brandstrup Bondesen",
+          data: [
+            {
+              r: 6,
+              x: 8,
+              y: 7,
+            },
+          ],
+        },
+        {
+          label: "Esmaralda Dorthea Bjerrum",
+          data: [
+            {
+              r: 6,
+              x: 6,
+              y: 8,
+            },
+          ],
+        },
+        {
+          label: "Kenneth Munk Christiansen",
+          data: [
+            {
+              r: 6,
+              x: 7,
+              y: 9,
+            },
+          ],
+        },
+        {
+          label: "Mads Bork Nees",
+          data: [
+            {
+              r: 6,
+              x: 15,
+              y: 10,
+            },
+          ],
+        },
+        {
+          label: "Markus Kristian Simonsen",
+          data: [
+            {
+              r: 6,
+              x: 12,
+              y: 11,
+            },
+          ],
+        },
+        {
+          label: "Nikolaj Kristensen",
+          data: [
+            {
+              r: 6,
+              x: 9,
+              y: 12,
+            },
+          ],
+        },
+        {
+          label: "Rune Terp",
+          data: [
+            {
+              r: 6,
+              x: 13,
+              y: 13,
+            },
+          ],
+        },
+        {
+          label: "Victor Steiner Kristensen",
+          data: [
+            {
+              r: 6,
+              x: 18,
+              y: 14,
+            },
+          ],
+        },
+        {
+          label: "Martin Stokholm Lauridsen",
+          data: [
+            {
+              r: 6,
+              x: 14,
+              y: 15,
+            },
+          ],
+        },
+        {
+          label: "Mike Dahl Lillelund Røjkjær",
+          data: [
+            {
+              r: 6,
+              x: 16,
+              y: 16,
+            },
+          ],
+        },
+        {
+          label: "Peter Ring Pedersen",
+          data: [
+            {
+              r: 6,
+              x: 20,
+              y: 17,
+            },
+          ],
+        },
+        {
+          label: "Michael Fack Sørensen",
+          data: [
+            {
+              r: 6,
+              x: 23,
+              y: 18,
+            },
+          ],
+        },
+        {
+          label: "Morten Hau Lyng",
+          data: [
+            {
+              r: 6,
+              x: 24,
+              y: 19,
+            },
+          ],
+        },
+        {
+          label: "Franz Bernhard",
+          data: [
+            {
+              r: 6,
+              x: 11,
+              y: 20,
+            },
+          ],
+        },
+        {
+          label: "Lars Emil Gram Christensen",
+          data: [
+            {
+              r: 6,
+              x: 30,
+              y: 21,
+            },
+          ],
+        },
+        {
+          label: "Oscarboe Vesthy Damgaard Nielsen",
+          data: [
+            {
+              r: 6,
+              x: 31,
+              y: 22,
+            },
+          ],
+        },
+        {
+          label: "Thomas Møller",
+          data: [
+            {
+              r: 6,
+              x: 28,
+              y: 23,
+            },
+          ],
+        },
+        {
+          label: "Jonas Harder Poulsen",
+          data: [
+            {
+              r: 6,
+              x: 33,
+              y: 24,
+            },
+          ],
+        },
+        {
+          label: "Ehab Basha",
+          data: [
+            {
+              r: 6,
+              x: 35,
+              y: 25,
+            },
+          ],
+        },
+        {
+          label: "Kristian Thorsen",
+          data: [
+            {
+              r: 6,
+              x: 34,
+              y: 26,
+            },
+          ],
+        },
+        {
+          label: "Rolf Malthe Andersen",
+          data: [
+            {
+              r: 6,
+              x: 29,
+              y: 27,
+            },
+          ],
+        },
+        {
+          label: "Niclas Spas Sørensen",
+          data: [
+            {
+              r: 6,
+              x: 36,
+              y: 28,
+            },
+          ],
+        },
+        {
+          label: "Kristoffer Sloth Dybdal",
+          data: [
+            {
+              r: 6,
+              x: 37,
+              y: 29,
+            },
+          ],
+        },
+        {
+          label: "Zabih Yasreb Mansoor",
+          data: [
+            {
+              r: 6,
+              x: 38,
+              y: 30,
+            },
+          ],
+        },
+        {
+          label: "Mathias Aslak Jensen",
+          data: [
+            {
+              r: 6,
+              x: 41,
+              y: 31,
+            },
+          ],
+        },
+        {
+          label: "Mathias Nortvig Thomassen",
+          data: [
+            {
+              r: 6,
+              x: 44,
+              y: 32,
+            },
+          ],
+        },
+        {
+          label: "Alberte Frederiksen",
+          data: [
+            {
+              r: 6,
+              x: 42,
+              y: 33,
+            },
+          ],
+        },
+        {
+          label: "Mikkel Høj Hansen",
+          data: [
+            {
+              r: 6,
+              x: 43,
+              y: 34,
+            },
+          ],
+        },
+        {
+          label: "Rasmus Lund Lorenzen",
+          data: [
+            {
+              r: 6,
+              x: 22,
+              y: 35,
+            },
+          ],
+        },
+        {
+          label: "Philip Sams",
+          data: [
+            {
+              r: 6,
+              x: 27,
+              y: 36,
+            },
+          ],
+        },
+        {
+          label: "Morten Bech",
+          data: [
+            {
+              r: 6,
+              x: 40,
+              y: 37,
+            },
+          ],
+        },
+        {
+          label: "Mikkel Kaysen",
+          data: [
+            {
+              r: 6,
+              x: 17,
+              y: 38,
+            },
+          ],
+        },
+        {
+          label: "Henrik Rivera Hansen",
+          data: [
+            {
+              r: 6,
+              x: 45,
+              y: 39,
+            },
+          ],
+        },
+        {
+          label: "Gitte Teglgaard Bavnsgaard",
+          data: [
+            {
+              r: 6,
+              x: 46,
+              y: 40,
+            },
+          ],
+        },
+        {
+          label: "Martin Nørlem",
+          data: [
+            {
+              r: 6,
+              x: 47,
+              y: 41,
+            },
+          ],
+        },
+        {
+          label: "Eskild Diderichsen",
+          data: [
+            {
+              r: 6,
+              x: 32,
+              y: 42,
+            },
+          ],
+        },
+        {
+          label: "Jonas Nielsen",
+          data: [
+            {
+              r: 6,
+              x: 19,
+              y: 43,
+            },
+          ],
+        },
+        {
+          label: "Nina Thomsen",
+          data: [
+            {
+              r: 6,
+              x: 39,
+              y: 44,
+            },
+          ],
+        },
+        {
+          label: "Alexander Reuss Christensen",
+          data: [
+            {
+              r: 6,
+              x: 21,
+              y: 45,
+            },
+          ],
+        },
+        {
+          label: "Simon Bundgaard-Egeberg",
+          data: [
+            {
+              r: 6,
+              x: 25,
+              y: 46,
+            },
+          ],
+        },
+        {
+          label: "Oliver Hennings",
+          data: [
+            {
+              r: 6,
+              x: 26,
+              y: 47,
+            },
+          ],
+        },
+        {
+          label: "Lasse Nielsen Fisker",
+          data: [
+            {
+              r: 6,
+              x: 48,
+              y: 48,
+            },
+          ],
+        },
+      ];
+
+      const rankingElement = document.getElementById("ranking");
+      const rankingConfig = {
+        type: "bubble",
+        data: { datasets: rankingData },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: "bottom",
+            },
+            title: {
+              display: true,
+              text: "Rankings",
+            },
+          },
+          scales: {
+            y: {
+              title: {
+                display: true,
+                text: "ELO",
+              },
+            },
+            x: {
+              title: {
+                display: true,
+                text: "Openskill",
+              },
+            },
+          },
+        },
+      };
+      const rankingChartInstance = new Chart(rankingElement, rankingConfig);
+
+      document.getElementById("hideAll").addEventListener("click", () => {
+        ratingChartInstance.data.datasets.forEach((x) => {
+          x.hidden = true;
+        });
+        rankingChartInstance.data.datasets.forEach((x) => {
+          x.hidden = true;
+        });
+        ratingChartInstance.update();
+        rankingChartInstance.update();
+      });
+
+      document.getElementById("showAll").addEventListener("click", () => {
+        ratingChartInstance.data.datasets.forEach((x) => {
+          x.hidden = false;
+        });
+        rankingChartInstance.data.datasets.forEach((x) => {
+          x.hidden = false;
+        });
+        ratingChartInstance.update();
+        rankingChartInstance.update();
+      });
+
+      console.log("hello mom 👋👋");
+    </script>
+  </body>
+</html>
